@@ -1,0 +1,63 @@
+﻿@model IEnumerable<my_books_shop.Models.Book>
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorsB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenresB)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @foreach (var a in item.AuthorsB)
+                {
+                    @Html.ActionLink(a.Author.Name, "ByAuthorId", new { id = a.Author.Id })
+                }
+            </td>
+            <td>
+                @foreach (var g in item.GenresB)
+                {
+                    @Html.ActionLink(g.Genre.Name, "ByGenreId", new { id = g.Genre.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
